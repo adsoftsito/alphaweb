@@ -94,19 +94,19 @@ export class ClientsProductsComponent implements OnDestroy, OnInit, AfterViewIni
 
       this.columnDefs = [{
           headerName: "Dueño de la cuenta",
-          field: "accountOwner",//solicitante
+          field: "companyid",//solicitante
           suppressSizeToFit: true,
           cellClass: ['motum-hover-name']
           // suppressMenu: true,
           // filter: "agTextColumnFilter"
       }, {
           headerName: "Razón social",
-          field: "businessName",//client
+          field: "customerid",//client
           // suppressMenu: true,
           // filter: "agTextColumnFilter"
       }, {
           headerName: "Pedidos",
-          field: "order",//pedido
+          field: "orderid",//pedido
           cellClass: ['motum-hover-name'],
           cellRenderer: (params) => {
               if (params.value === 0 || params.value < 0) {
@@ -128,21 +128,21 @@ export class ClientsProductsComponent implements OnDestroy, OnInit, AfterViewIni
           }
       }, {
           headerName: "Suscripciones",
-          field: "subscriptions",//subscriptions
+          field: "driverid",//subscriptions
           suppressMenu: true,
           getQuickFilterText: function(params) {
             return null;
           }
       }, {
           headerName: "Instaladas",
-          field: "installed",//instaladas
+          field: "truckid",//instaladas
           suppressMenu: true,
           getQuickFilterText: function(params) {
             return null;
           }
       }, {
           headerName: "Integrantes",
-          field: "members",//integrantes
+          field: "trailerid1",//integrantes
           cellClass: ['motum-hover-name'],
           suppressMenu: true,
           getQuickFilterText: function(params) {
@@ -150,14 +150,14 @@ export class ClientsProductsComponent implements OnDestroy, OnInit, AfterViewIni
           }
       }, {
           headerName: "Tipo",
-          field: "rol",
+          field: "dollyid",
           suppressMenu: true,
           getQuickFilterText: function(params) {
             return null;
           }
       }, {
           headerName: "Paro de motor",
-          field: "engineStop",
+          field: "trailerid2",
           suppressMenu: true,
           getQuickFilterText: function(params) {
               return null;
@@ -393,8 +393,13 @@ export class ClientsProductsComponent implements OnDestroy, OnInit, AfterViewIni
         this.clientProductService.retrieveDataForTable()
             .subscribe(
                 res => {
+                    console.log(res);
                     const body = JSON.parse(res['_body']);
-                    const dataToSetup: any = body.clients;
+                    const dataToSetup: any = body;
+                    console.log('data ...');                    
+                    console.log(dataToSetup);
+                    console.log('data ...');
+
                     this.gridOptions.api.setRowData(dataToSetup);
                     this.tableCount = dataToSetup.length;
                     setTimeout(() => {

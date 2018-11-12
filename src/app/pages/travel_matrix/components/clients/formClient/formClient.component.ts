@@ -74,6 +74,32 @@ public options: Select2Options;
 public optionsPermits: Select2Options;
 
 //translate
+viaje = 'pages.logistica.clients.formClient.viaje';
+ruta = 'pages.logistica.clients.formClient.ruta';
+begin = 'pages.logistica.clients.formClient.begin';
+end = 'pages.logistica.clients.formClient.end';
+operador = 'pages.logistica.clients.formClient.operador';
+unidad = 'pages.logistica.clients.formClient.unidad';
+remolque1 = 'pages.logistica.clients.formClient.remolque1';
+dolly = 'pages.logistica.clients.formClient.dolly';
+remolque2 = 'pages.logistica.clients.formClient.remolque2';
+
+
+beginDet = 'pages.logistica.clients.formClient.beginDet';
+endDet = 'pages.logistica.clients.formClient.endDet';
+operadorDet = 'pages.logistica.clients.formClient.operadorDet';
+unidadDet = 'pages.logistica.clients.formClient.unidadDet';
+remolque1Det = 'pages.logistica.clients.formClient.remolque1Det';
+dollyDet = 'pages.logistica.clients.formClient.dollyDet';
+remolque2Det = 'pages.logistica.clients.formClient.remolque2Det';
+
+//Billing
+rutaDef = 'pages.logistica.clients.formClient.rutaDef';
+origenDef = 'pages.logistica.clients.formClient.origenDef';
+destinoDef = 'pages.logistica.clients.formClient.destinoDef';
+ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
+
+
 title = 'pages.userControl.clients.formClient.title';
 edit = 'pages.userControl.clients.formClient.edit';
 client = 'pages.userControl.clients.formClient.client';
@@ -204,6 +230,13 @@ confirmedDummi:Array<any> =[{
   }]
 }];
 source: Array<any>;
+
+arrDrivers:Array<any> =[];
+
+driverId : string;
+driverName : string;
+driverLicense : string;
+
 dataExample: Array<any> = [
   {
     "key": 1,
@@ -404,6 +437,76 @@ ngOnInit() {
     theme: 'classic',
     closeOnSelect: true,
   }
+
+  this.getDriversData();
+  this.getUnitsData();
+  
+}
+
+selectName()
+{
+  
+//alert(this.driverId);
+let myDriver = this.arrDrivers.find(x => x.driverid === this.driverId);
+
+this.driverName = myDriver.name;
+this.driverLicense = myDriver.license;
+} 
+getDriversData(){
+  this.clientProductService.retrieveDrivers()
+      .subscribe(
+          res => {
+              console.log(res);
+              const body = JSON.parse(res['_body']);
+              const dataToSetup: any = body;
+              console.log('drivers ...');  
+              this.arrDrivers = dataToSetup;                  
+              console.log(this.arrDrivers);
+              console.log('drivers ...');
+
+             // this.gridOptions.api.setRowData(dataToSetup);
+             // this.tableCount = dataToSetup.length;
+              setTimeout(() => {
+                  // console.info("Resize columns");
+               //   this.gridApi.sizeColumnsToFit();
+              }, 200);
+          },
+          err => {
+              console.info(err);
+
+              //this.gridOptions.api.setRowData([]);
+             // this.gridApi.sizeColumnsToFit();
+              alert("An error has occurred, check your browser console");
+          }
+      );
+}
+
+getUnitsData(){
+  this.clientProductService.retrieveUnits()
+      .subscribe(
+          res => {
+              console.log(res);
+              const body = JSON.parse(res['_body']);
+              const dataToSetup: any = body;
+              console.log('units ...');                    
+              console.log(dataToSetup);
+              console.log('units ...');
+
+             // this.gridOptions.api.setRowData(dataToSetup);
+             // this.tableCount = dataToSetup.length;
+              setTimeout(() => {
+                  // console.info("Resize columns");
+               //   this.gridApi.sizeColumnsToFit();
+              }, 200);
+          },
+          err => {
+              console.info(err);
+
+              //this.gridOptions.api.setRowData([]);
+             // this.gridApi.sizeColumnsToFit();
+              alert("An error has occurred, check your browser console");
+          }
+      );
 }
 
 onButtonGroupClick($event){

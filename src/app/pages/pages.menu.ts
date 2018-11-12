@@ -131,7 +131,8 @@ export const PAGES_MENU = [{
             label : 'Despacho',
             icon: 'motum-i tm-e9c0',
             colorHover: '#006DFB',
-            url: '/pages/travel_matrix/orders'
+            //url: '/pages/travel_matrix/orders'
+            url: '/pages/travel_matrix/clients-products'
           },
           {
             _id: 'travel_matrix',

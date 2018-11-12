@@ -9,7 +9,7 @@ export class Constants {
   //  DOMAIN: string = "http://landcserver.dyndns.org:10012/api/v1";
     DOMAIN: string = "https://eco-seeker-213615.appspot.com";
   
-    ENDPOINT_USER: string = "users";//todo: remove this line
+    ENDPOINT_USER: string = "viajes";//todo: remove this line
     EVENTS_SERVICE: any = {
     SIDEBAR_MENU_ITEM_TOGGLE: 'sidebar:menu:item:toggle',
     BREADCRUMB_SET_MANUAL_BREAD: 'breadcrumb:set:buttonBack',

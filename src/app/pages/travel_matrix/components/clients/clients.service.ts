@@ -10,8 +10,8 @@ import { ClientModel } from '../../../../shared/models/clients/client.model';
 @Injectable()
 export class ClientProductService {
 
-    ENDPOINT: string = 'clients';
-    ENDPOINTMEMBERS: string = 'members';
+    ENDPOINT: string = 'viajes';
+    ENDPOINTMEMBERS: string = 'operadores';
     ENDPOINTALERTS: string = 'alerts';
     ENDPOINTPRODUCTS: string = 'product-catalog';
     ENDPOINTPLAN: string = 'plan-catalog';
@@ -63,6 +63,44 @@ export class ClientProductService {
 
         return shareGet;
     }
+
+    retrieveDrivers(params?: any) {
+        let shareGet;
+
+        if (params) {
+            // shareGet = this.api.get('data.json', params).share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTMEMBERS, params).share();
+        } else {
+            // shareGet = this.api.get('data.json').share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTMEMBERS).share();
+        }
+
+        shareGet.map(res => res.json());
+
+        return shareGet;
+    }
+
+    retrieveUnits(params?: any) {
+        let shareGet;
+
+        if (params) {
+            // shareGet = this.api.get('data.json', params).share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINT, params).share();
+        } else {
+            // shareGet = this.api.get('data.json').share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINT).share();
+        }
+
+        shareGet.map(res => res.json());
+
+        return shareGet;
+    }
+
+
     getDataForTableFilter (params: any) {
       let shareGet;
         shareGet = this.api.get(this.ENDPOINT, params).share();
