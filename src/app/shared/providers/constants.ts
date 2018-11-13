@@ -7,7 +7,7 @@ export class Constants {
   // DOMAIN: string = "http://motum.mocklab.io/admin";
   // DOMAIN: string = "http://192.168.0.150:10012/api/v1";
   //  DOMAIN: string = "http://landcserver.dyndns.org:10012/api/v1";
-    DOMAIN: string = "https://eco-seeker-213615.appspot.com";
+    DOMAIN: string = "https://advance-path-222122.appspot.com";
   
     ENDPOINT_USER: string = "viajes";//todo: remove this line
     EVENTS_SERVICE: any = {

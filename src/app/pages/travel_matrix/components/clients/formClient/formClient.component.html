@@ -101,19 +101,17 @@
                               <div class="col-sm-9">
                                 <div class="has-success motum-input-form">
                                   <label for="inputCountry" >{{ operador | translate }}</label>
+                                
                                   
-                            <select [(ngModel)]="driverId" name="Id" id="inputCountry" class="form-control input-sm" (change)="selectName();">
-                             <option selected="" value=""></option>  
-                              <option [ngValue]="k.driverid" *ngFor="let k of arrDrivers">  
-                                  {{k.name}}  
-                              </option>  
-                                  <!--  <option></option>
-                                    <option>Adolfo Centeno</option>
-                                    <option>Alejandro Reyes</option>
-                                    <option>Jesus Velez</option>
-                                    <option>Luis Galan</option>-->
-                                  </select>
-                                </div>
+                            <select [(ngModel)]="driverId" name="driverId" id="inputCountry" class="form-control input-sm" (change)="selectDriverData();">
+                                <option selected="" value=""></option>  
+                                <option [ngValue]="k.driverid" *ngFor="let k of arrDrivers">  
+                                  {{k.name}} {{k.lastname}}  
+                                </option>  
+                             </select>
+                            
+                            
+                            </div>
                               </div>
                             </div>
                           
@@ -121,13 +119,22 @@
                               <div class="col-sm-9">
                                 <div class="has-success motum-input-form">
                                   <label for="inputCountry" >{{ unidad | translate }}</label>
+                                  
+                                  <select [(ngModel)]="truckId" name="truckId" id="inputCountry" class="form-control input-sm" (change)="selectTruckData();">
+                                    <option selected="" value=""></option>  
+                                    <option [ngValue]="k.trucknumber" *ngFor="let k of arrTrucks">  
+                                      {{k.trucknumber}}  
+                                    </option>  
+                                 </select>
+                           
+                                  <!--
                                   <select name="" id="inputCountry" class="form-control input-sm">
                                     <option></option>
                                     <option>u100 - HESA</option>
                                     <option>u101 - HESA</option>
                                     <option>u102 - HESA</option>
                                     <option>u103 - HESA</option>
-                                  </select>
+                                  </select> -->
                                 </div>
                               </div>
                             </div>
@@ -136,6 +143,16 @@
                             <div class="col-sm-9">
                               <div class="has-success motum-input-form">
                                 <label for="inputCountry" >{{ remolque1 | translate }}</label>
+                         
+                                <select [(ngModel)]="trailer1Id" name="trailer1Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer1Data();">
+                                  <option selected="" value=""></option>  
+                                  <option [ngValue]="k.trailernumber" *ngFor="let k of arrTrailers">  
+                                    {{k.trailernumber}}  
+                                  </option>  
+                               </select>
+                         
+                              
+                                <!--
                                 <select name="" id="inputCountry" class="form-control input-sm">
                                   <option></option>
                                   <option>R01 - Remolque 1</option>
@@ -143,6 +160,8 @@
                                   <option>R03 - Remolque 3</option>
                                   <option>R04 - Remolque 4</option>
                                 </select>
+
+                              -->
                               </div>
                             </div>
                           </div>
@@ -151,6 +170,14 @@
                               <div class="col-sm-12">
                                 <div class="has-success motum-input-form">
                                   <label for="inputState">{{ dolly | translate }}</label>
+                                  <select [(ngModel)]="dollyId" name="dollyId" id="inputCountry" class="form-control input-sm" (change)="selectDollyData();">
+                                    <option selected="" value=""></option>  
+                                    <option [ngValue]="k.dollynumber" *ngFor="let k of arrDollys">  
+                                      {{k.dollynumber}}  
+                                    </option>  
+                                 </select>
+                           
+                                  <!--
                                   <select name="inputState" id="inputState" class="form-control input-sm">
                                     <option></option>
                                     <option>D01 - Dolly 1</option>
@@ -158,7 +185,7 @@
                                     <option>D03 - Dolly 3</option>
                                     <option>D04 - Dolly 4</option>
                                     <option>D05 - Dolly 5</option>
-                                  </select>
+                                  </select>-->
                                 </div>
                               </div>
                             </div>
@@ -168,13 +195,22 @@
                             <div class="col-sm-12">
                               <div class="has-success motum-input-form">
                                 <label for="inputState">{{ remolque2 | translate }}</label>
+
+                                <select [(ngModel)]="trailer2Id" name="trailer2Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer2Data();">
+                                  <option selected="" value=""></option>  
+                                  <option [ngValue]="k.trailernumber" *ngFor="let k of arrTrailers">  
+                                    {{k.trailernumber}}  
+                                  </option>  
+                               </select>
+                         
+                                <!--
                                 <select name="inputState" id="inputState" class="form-control input-sm">
                                   <option></option>
                                   <option>R01 - Remolque 1</option>
                                   <option>R02 - Remolque 2</option>
                                   <option>R03 - Remolque 3</option>
                                   <option>R04 - Remolque 4</option>
-                                </select>
+                                </select>-->
                               </div>
                             </div>
                           </div>
@@ -262,39 +298,81 @@
                                    <!-- <label for="inputnumberExtension">{{ unidadDet | translate }}</label><br>
                                     <input [(ngModel)]="clientModel.numberExtension" type="text" class="form-control input-sm" id="inputnumberExtension" [ngModelOptions]="{standalone: true}" required>
                                    -->
+                                   <div class=" has-success motum-input-form">
+                                    <label for="inputnumberExtension">{{ truckBrand }}</label><br>
+                                    <label for="inputnumberExtension">{{ truckModel }}</label><br>
+                                    <label for="inputnumberExtension">{{ truckYear }}</label><br>
+                                    <label for="inputnumberExtension">{{ truckPlate }}</label><br>
+                                  
+                                    <!--
+                                    <input [(ngModel)]="clientModel.numberExtension" type="text" class="form-control input-sm" id="inputnumberExtension" [ngModelOptions]="{standalone: true}" required>
+                                   -->
+                                  </div>
                                   </div>
                                 </div>
                               </div>
       
-    
+                              <div class="row motum-label-form space">
+                                <div class="col-md-8  col-sm-12 spaceTelPadding">
+                                  <div class="has-success motum-input-form motum-intl-tel-input">
+                                    <label for="">{{ remolque1Det | translate }}</label><br>
+                                  
+                                   
+                                </div>
+                                </div>
+      
+                                <div class="col-sm-4 motum-label-form space">
+                                  <div class="has-success motum-input-form">
+                                   
+                                    <div class=" has-success motum-input-form">
+                                      <label for="inputnumberExtension">{{ trailer1Brand }}</label><br>
+                                      <label for="inputnumberExtension">{{ trailer1Type }}</label><br>
+                                      <label for="inputnumberExtension">{{ trailer1Model }}</label><br>
+                                      <label for="inputnumberExtension">{{ trailer1Year }}</label><br>
+                                      <label for="inputnumberExtension">{{ trailer1Plate }}</label><br>
+                                    
+                                     
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
                             <div class="row motum-label-form space">
                               <div class="col-md-8  col-sm-12 spaceTelPadding">
                                 <div class="has-success motum-input-form motum-intl-tel-input">
-                                  <label for="">{{ remolque1Det | translate }}</label><br>
-                                <!--  <motum-intl-tel-input [id]="'tm-intl-tel-input'"
-                                  [cssClasses]="'form-control input-sm'"></motum-intl-tel-input>
-                                -->
-                              </div>
-                              </div>
-    
-                              <div class="col-sm-10 motum-label-form space">
-                                <div class="has-success motum-input-form">
                                   <label for="inputServer">{{ dollyDet | translate }}</label>
-                                 <!-- <select name="inputServer" id="inputServer" class="form-control">
-                                    <option></option>
-                                  </select> -->
+                                
+                                 
+                              </div>
+                              </div>
     
+                              <div class="col-sm-4 motum-label-form space">
+                                <div class="has-success motum-input-form">
+                                 
+                                  <div class=" has-success motum-input-form">
+                                    <label for="inputnumberExtension">{{ dollyBrand }}</label><br>
+                                    <label for="inputnumberExtension">{{ dollyModel }}</label><br>
+                                    <label for="inputnumberExtension">{{ dollyYear }}</label><br>
+                               
+                                   
+                                  </div>
                                 </div>
                               </div>
                             </div>
                             <div class="row motum-label-form space">
-                              <div class="col-md-12">
+                              <div class="col-md-8">
                                 <label for="inputSector">{{ remolque2Det | translate }}</label>
                               </div>
-                              <div class="col-md-12 col-sm-12">
-                               <!-- <div class="form-group has-success motum-input-form">
-                                  <input [(ngModel)]="clientModel.sector" type="text" class="form-control input-sm" id="inputSector" [ngModelOptions]="{standalone: true}" required>
-                                </div> -->
+                              <div class="col-md-4 col-sm-12">
+                                <div class=" has-success motum-input-form">
+                                  <label for="inputnumberExtension">{{ trailer2Brand }}</label><br>
+                                  <label for="inputnumberExtension">{{ trailer2Type }}</label><br>
+                                  <label for="inputnumberExtension">{{ trailer2Model }}</label><br>
+                                  <label for="inputnumberExtension">{{ trailer2Year }}</label><br>
+                                  <label for="inputnumberExtension">{{ trailer2Plate }}</label><br>
+                                
+                                 
+                                </div>
                               </div>
                             </div>
                             <!--

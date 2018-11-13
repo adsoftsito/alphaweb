@@ -10,7 +10,15 @@ import { ClientModel } from '../../../../shared/models/clients/client.model';
 @Injectable()
 export class ClientProductService {
 
-    ENDPOINT: string = 'viajes';
+    ENDPOINT: string = '';
+    ENDPOINTORDERS: string = 'viajes';
+
+    ENDPOINTDRIVERS: string = 'operadores';
+    ENDPOINTTRUCKS: string = 'trucks';
+    ENDPOINTTRAILERS: string = 'trailers';
+    ENDPOINTDOLLYS: string = 'dollys';
+
+
     ENDPOINTMEMBERS: string = 'operadores';
     ENDPOINTALERTS: string = 'alerts';
     ENDPOINTPRODUCTS: string = 'product-catalog';
@@ -52,11 +60,11 @@ export class ClientProductService {
         if (params) {
             // shareGet = this.api.get('data.json', params).share();
             //TODO: descomentame cuando ya exista una api oficial
-            shareGet = this.api.get(this.ENDPOINT, params).share();
+            shareGet = this.api.get(this.ENDPOINTORDERS, params).share();
         } else {
             // shareGet = this.api.get('data.json').share();
             //TODO: descomentame cuando ya exista una api oficial
-            shareGet = this.api.get(this.ENDPOINT).share();
+            shareGet = this.api.get(this.ENDPOINTORDERS).share();
         }
 
         shareGet.map(res => res.json());
@@ -70,11 +78,11 @@ export class ClientProductService {
         if (params) {
             // shareGet = this.api.get('data.json', params).share();
             //TODO: descomentame cuando ya exista una api oficial
-            shareGet = this.api.get(this.ENDPOINTMEMBERS, params).share();
+            shareGet = this.api.get(this.ENDPOINTDRIVERS, params).share();
         } else {
             // shareGet = this.api.get('data.json').share();
             //TODO: descomentame cuando ya exista una api oficial
-            shareGet = this.api.get(this.ENDPOINTMEMBERS).share();
+            shareGet = this.api.get(this.ENDPOINTDRIVERS).share();
         }
 
         shareGet.map(res => res.json());
@@ -82,17 +90,17 @@ export class ClientProductService {
         return shareGet;
     }
 
-    retrieveUnits(params?: any) {
+    retrieveTrucks(params?: any) {
         let shareGet;
 
         if (params) {
             // shareGet = this.api.get('data.json', params).share();
             //TODO: descomentame cuando ya exista una api oficial
-            shareGet = this.api.get(this.ENDPOINT, params).share();
+            shareGet = this.api.get(this.ENDPOINTTRUCKS, params).share();
         } else {
             // shareGet = this.api.get('data.json').share();
             //TODO: descomentame cuando ya exista una api oficial
-            shareGet = this.api.get(this.ENDPOINT).share();
+            shareGet = this.api.get(this.ENDPOINTTRUCKS).share();
         }
 
         shareGet.map(res => res.json());
@@ -100,6 +108,41 @@ export class ClientProductService {
         return shareGet;
     }
 
+    retrieveTrailers(params?: any) {
+        let shareGet;
+
+        if (params) {
+            // shareGet = this.api.get('data.json', params).share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTTRAILERS, params).share();
+        } else {
+            // shareGet = this.api.get('data.json').share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTTRAILERS).share();
+        }
+
+        shareGet.map(res => res.json());
+
+        return shareGet;
+    }
+
+    retrieveDollys(params?: any) {
+        let shareGet;
+
+        if (params) {
+            // shareGet = this.api.get('data.json', params).share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTDOLLYS, params).share();
+        } else {
+            // shareGet = this.api.get('data.json').share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTDOLLYS).share();
+        }
+
+        shareGet.map(res => res.json());
+
+        return shareGet;
+    }
 
     getDataForTableFilter (params: any) {
       let shareGet;

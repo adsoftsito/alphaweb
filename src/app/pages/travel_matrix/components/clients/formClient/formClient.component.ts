@@ -232,10 +232,41 @@ confirmedDummi:Array<any> =[{
 source: Array<any>;
 
 arrDrivers:Array<any> =[];
+arrTrucks:Array<any> =[];
+arrTrailers:Array<any> =[];
+arrDollys:Array<any> =[];
 
 driverId : string;
 driverName : string;
 driverLicense : string;
+
+truckId : string;
+truckBrand : string;
+truckModel : string;
+truckYear : string;
+truckPlate : string;
+
+
+trailer1Id : string;
+trailer1Brand : string;
+trailer1Type : string;
+trailer1Model : string;
+trailer1Year : string;
+trailer1Plate : string;
+
+dollyId : string;
+dollyBrand : string;
+dollyModel : string;
+dollyYear : string;
+
+
+trailer2Id : string;
+trailer2Brand : string;
+trailer2Type : string;
+trailer2Model : string;
+trailer2Year : string;
+trailer2Plate : string;
+
 
 dataExample: Array<any> = [
   {
@@ -439,11 +470,14 @@ ngOnInit() {
   }
 
   this.getDriversData();
-  this.getUnitsData();
+  this.getTrucksData();
+  this.getTrailersData();
+  this.getDollysData();
+  
   
 }
 
-selectName()
+selectDriverData()
 {
   
 //alert(this.driverId);
@@ -452,6 +486,57 @@ let myDriver = this.arrDrivers.find(x => x.driverid === this.driverId);
 this.driverName = myDriver.name;
 this.driverLicense = myDriver.license;
 } 
+
+selectTruckData()
+{
+  
+//alert(this.driverId);
+let myTruck = this.arrTrucks.find(x => x.trucknumber === this.truckId);
+
+this.truckBrand = myTruck.brand;
+this.truckModel = myTruck.model;
+this.truckYear = myTruck.year;
+this.truckPlate = myTruck.plate;
+}
+
+selectTrailer1Data()
+{
+  
+//alert(this.driverId);
+let myTrailer1 = this.arrTrailers.find(x => x.trailernumber === this.trailer1Id);
+ 
+this.trailer1Brand = myTrailer1.brand;
+this.trailer1Type = myTrailer1.trailertype;
+this.trailer1Model = myTrailer1.model;
+this.trailer1Year = myTrailer1.year;
+this.trailer1Plate = myTrailer1.plate;
+
+}
+
+selectDollyData()
+{
+  
+//alert(this.driverId);
+let myDolly = this.arrDollys.find(x => x.dollynumber === this.dollyId);
+
+this.dollyBrand = myDolly.brand;
+this.dollyModel = myDolly.model;
+this.dollyYear = myDolly.year;
+}
+
+selectTrailer2Data()
+{
+//alert(this.driverId);
+let myTrailer2 = this.arrTrailers.find(x => x.trailernumber === this.trailer2Id);
+ 
+this.trailer2Brand = myTrailer2.brand;
+this.trailer2Type = myTrailer2.trailertype;
+this.trailer2Model = myTrailer2.model;
+this.trailer2Year = myTrailer2.year;
+this.trailer2Plate = myTrailer2.plate;
+
+}
+
 getDriversData(){
   this.clientProductService.retrieveDrivers()
       .subscribe(
@@ -481,16 +566,80 @@ getDriversData(){
       );
 }
 
-getUnitsData(){
-  this.clientProductService.retrieveUnits()
+getTrucksData(){
+  this.clientProductService.retrieveTrucks()
       .subscribe(
           res => {
               console.log(res);
               const body = JSON.parse(res['_body']);
               const dataToSetup: any = body;
-              console.log('units ...');                    
+              console.log('trucks ...');    
+              this.arrTrucks = dataToSetup;                  
+                
               console.log(dataToSetup);
-              console.log('units ...');
+              console.log('trucks ...');
+
+             // this.gridOptions.api.setRowData(dataToSetup);
+             // this.tableCount = dataToSetup.length;
+              setTimeout(() => {
+                  // console.info("Resize columns");
+               //   this.gridApi.sizeColumnsToFit();
+              }, 200);
+          },
+          err => {
+              console.info(err);
+
+              //this.gridOptions.api.setRowData([]);
+             // this.gridApi.sizeColumnsToFit();
+              alert("An error has occurred, check your browser console");
+          }
+      );
+}
+
+
+getTrailersData(){
+  this.clientProductService.retrieveTrailers()
+      .subscribe(
+          res => {
+              console.log(res);
+              const body = JSON.parse(res['_body']);
+              const dataToSetup: any = body;
+              console.log('trailers ...');  
+              this.arrTrailers = dataToSetup;                  
+                  
+              console.log(dataToSetup);
+              console.log('trailers ...');
+
+             // this.gridOptions.api.setRowData(dataToSetup);
+             // this.tableCount = dataToSetup.length;
+              setTimeout(() => {
+                  // console.info("Resize columns");
+               //   this.gridApi.sizeColumnsToFit();
+              }, 200);
+          },
+          err => {
+              console.info(err);
+
+              //this.gridOptions.api.setRowData([]);
+             // this.gridApi.sizeColumnsToFit();
+              alert("An error has occurred, check your browser console");
+          }
+      );
+}
+
+
+getDollysData(){
+  this.clientProductService.retrieveDollys()
+      .subscribe(
+          res => {
+              console.log(res);
+              const body = JSON.parse(res['_body']);
+              const dataToSetup: any = body;
+              console.log('dollys ...');    
+              this.arrDollys = dataToSetup;                  
+                
+              console.log(dataToSetup);
+              console.log('dollys ...');
 
              // this.gridOptions.api.setRowData(dataToSetup);
              // this.tableCount = dataToSetup.length;
