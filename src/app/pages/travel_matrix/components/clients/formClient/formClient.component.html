@@ -444,41 +444,36 @@
                         <div class="row window-body-margin">
                           <div class="col-md-6 col-sm-12 motum-content-left-form">
                               <label class="window-bold-style motum-subtitle-form in-form">{{ rutaDef | translate}}</label>
-                              <!--                        <div class="row radiOptions motum-radio-btn-billing">
-                                  <div class="col-md-12 col-sm-12">
-                                    <div class="form-check">
-                                      <label ><input type="radio" name="radioFiscalPhysicalPerson" id="radioFiscalPhysicalPerson" value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1"><span class="overlay"></span>{{ physicalPerson | translate}}</label>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-12 col-sm-12">
-                                    <div class="form-check">
-                                      <label ><input type="radio" name="radioFiscalMoralPerson" id="radioFiscalMoralPerson" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>{{ moralPerson | translate}}</label>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-12 col-sm-12">
-                                      <div class="form-check">
-                                        <label ><input type="radio" name="radioBusinessActivity" id="radioBusinessActivity" value="option3" (click)="radioBotton3(flagCheck3)" [checked]="flagCheck3"><span class="overlay"></span>{{ physicalPersonWithBusiness | translate}}</label>
-                                      </div>
-                                  </div>
-                              </div>
-                            -->
-                            <div class="row motum-label-form space">
-                              <div class="col-md-12 spaceTitle">
-                                <label for="inputFiscalComercialName">{{ origenDef | translate }}</label>
-                              </div>
-                              <div class=" col-md-12 col-sm-12">
+                              <select [(ngModel)]="routeId" name="routeId" id="inputCountry" class="form-control input-sm" (change)="selectRouteData();">
+                                <option selected="" value=""></option>  
+                                <option [ngValue]="k.routeid" *ngFor="let k of arrRoutes">  
+                                  {{k.placesource}} {{k.placetarget}}  
+                                </option>
+                              </select>
+                              
+                              <div class="row motum-label-form space">
+                             
+                                <div class="col-md-12 spaceTitle">
+                                  <label for="inputFiscalComercialName">{{ origenDef | translate }}</label>
+                                </div>
+                               
+                                <div class=" col-md-12 col-sm-12">
                                 <div class="form-group has-success motum-input-form">
-                                  <input [(ngModel)]="clientModel.fiscalComercialName" type="text" class="form-control input-sm" id="inputFiscalComercialName" [ngModelOptions]="{standalone: true}" required>
+                                  <label class="window-bold-style motum-subtitle-form in-form">{{ routeSource }}</label>
+
+                                   
                                 </div>
                               </div>
                             </div>
+
                             <div class="row motum-label-form">
                               <div class="col-md-12">
                                 <label for="inputFiscalBusinessName">{{ destinoDef | translate }}</label>
                               </div>
                               <div class=" col-md-12 col-sm-12">
                                 <div class="form-group has-success motum-input-form">
-                                  <input [(ngModel)]="clientModel.fiscalBusinessName" type="text" class="form-control input-sm" id="inputFiscalBusinessName" [ngModelOptions]="{standalone: true}" required>
+                                  <label class="window-bold-style motum-subtitle-form in-form">{{ routeTarget }}</label>
+
                                 </div>
                               </div>
                             </div>

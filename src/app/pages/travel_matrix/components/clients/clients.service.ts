@@ -18,6 +18,8 @@ export class ClientProductService {
     ENDPOINTTRAILERS: string = 'trailers';
     ENDPOINTDOLLYS: string = 'dollys';
 
+    ENDPOINTROUTES: string = 'rutas';
+
 
     ENDPOINTMEMBERS: string = 'operadores';
     ENDPOINTALERTS: string = 'alerts';
@@ -71,6 +73,25 @@ export class ClientProductService {
 
         return shareGet;
     }
+
+    retrieveRoutes(params?: any) {
+        let shareGet;
+
+        if (params) {
+            // shareGet = this.api.get('data.json', params).share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTROUTES, params).share();
+        } else {
+            // shareGet = this.api.get('data.json').share();
+            //TODO: descomentame cuando ya exista una api oficial
+            shareGet = this.api.get(this.ENDPOINTROUTES).share();
+        }
+
+        shareGet.map(res => res.json());
+
+        return shareGet;
+    }
+
 
     retrieveDrivers(params?: any) {
         let shareGet;

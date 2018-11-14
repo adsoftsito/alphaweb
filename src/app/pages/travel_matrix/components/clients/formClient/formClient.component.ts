@@ -235,6 +235,7 @@ arrDrivers:Array<any> =[];
 arrTrucks:Array<any> =[];
 arrTrailers:Array<any> =[];
 arrDollys:Array<any> =[];
+arrRoutes:Array<any> =[];
 
 driverId : string;
 driverName : string;
@@ -266,6 +267,10 @@ trailer2Type : string;
 trailer2Model : string;
 trailer2Year : string;
 trailer2Plate : string;
+
+routeId : string;
+routeSource : string;
+routeTarget : string;
 
 
 dataExample: Array<any> = [
@@ -473,7 +478,9 @@ ngOnInit() {
   this.getTrucksData();
   this.getTrailersData();
   this.getDollysData();
-  
+  this.getRoutesData();
+
+
   
 }
 
@@ -536,6 +543,17 @@ this.trailer2Year = myTrailer2.year;
 this.trailer2Plate = myTrailer2.plate;
 
 }
+
+selectRouteData()
+{
+  
+alert(this.routeId)
+let myRoute = this.arrRoutes.find(x => x.routeid === this.routeId);
+
+this.routeSource = myRoute.placesource;
+this.routeTarget = myRoute.placetarget;
+}
+
 
 getDriversData(){
   this.clientProductService.retrieveDrivers()
@@ -626,6 +644,37 @@ getTrailersData(){
           }
       );
 }
+
+getRoutesData(){
+  this.clientProductService.retrieveRoutes()
+      .subscribe(
+          res => {
+              console.log(res);
+              const body = JSON.parse(res['_body']);
+              const dataToSetup: any = body;
+              console.log('routes ...');    
+              this.arrRoutes = dataToSetup;                  
+                
+              console.log(dataToSetup);
+              console.log('routes ...');
+
+             // this.gridOptions.api.setRowData(dataToSetup);
+             // this.tableCount = dataToSetup.length;
+              setTimeout(() => {
+                  // console.info("Resize columns");
+               //   this.gridApi.sizeColumnsToFit();
+              }, 200);
+          },
+          err => {
+              console.info(err);
+
+              //this.gridOptions.api.setRowData([]);
+             // this.gridApi.sizeColumnsToFit();
+              alert("An error has occurred, check your browser console");
+          }
+      );
+}
+
 
 
 getDollysData(){
