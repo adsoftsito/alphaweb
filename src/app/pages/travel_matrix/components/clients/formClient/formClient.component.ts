@@ -271,7 +271,7 @@ trailer2Plate : string;
 routeId : string;
 routeSource : string;
 routeTarget : string;
-
+arrRouteDetail:Array<any> =[];
 
 dataExample: Array<any> = [
   {
@@ -547,11 +547,14 @@ this.trailer2Plate = myTrailer2.plate;
 selectRouteData()
 {
   
-alert(this.routeId)
 let myRoute = this.arrRoutes.find(x => x.routeid === this.routeId);
 
 this.routeSource = myRoute.placesource;
 this.routeTarget = myRoute.placetarget;
+this.arrRouteDetail = myRoute.route_details;
+alert(this.arrRouteDetail)
+
+
 }
 
 
